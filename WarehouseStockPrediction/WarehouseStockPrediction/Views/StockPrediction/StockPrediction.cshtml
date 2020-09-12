@@ -1,0 +1,50 @@
+﻿@model ModelInput 
+
+@{
+    ViewData["Title"] = "Stock Quantity Prediction";
+}
+
+<h1>Stock Quantity Prediction Web Application</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="StockPrediction">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="ItemId" class="control-label">Item Number</label>
+                    <input asp-for="ItemId" class="form-control" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="LocationCode" class="control-label">Wharehouse Location Code</label>
+                    <input asp-for="LocationCode" class="form-control" type="number" />
+                </div>
+            </div>
+            <div class="form-group col-md-4 text-left">
+                <label class="control-label"></label>
+                <input type="submit" value="Run Prediction" class="btn btn-primary" />
+            </div>
+        </form>
+        <hr />
+    </div>
+</div>
+
+@if (ViewBag.Result != null)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <h4 style="color:#002080">Item Number: </h4>
+            <span style="color:#008000; font-size: 14px; font-weight:bold;">@ViewData["ItemId"]</span>
+        </div>
+        <div class="col-md-6">
+            <h4 style="color:#002080">Warehouse Location: </h4>
+            <span style="color:#008000; font-size: 14px; font-weight:bold;">@ViewData["LocationCode"]</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4 style="color:#002080">Current Stock Quantity Predicted: </h4>
+            <span style="color:#008000; font-size: 14px; font-weight:bold;">@ViewBag.Result.Score</span>
+        </div>
+    </div>
+}
+
